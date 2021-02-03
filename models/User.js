@@ -13,4 +13,4 @@ const User = sequelize.define("user", {
     },
 }, { timestamps: true, freezeTableName: true })
 
-module.exports = User
+module.exports = { User, sequelize }

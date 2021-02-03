@@ -9,10 +9,11 @@ const Note = sequelize.define("note", {
     },
     userId: {
         type: DataTypes.INTEGER,
+        foreignKey: true,
         references: {
             model: 'user',
             key: 'id',
-        }
+        },
     },
     title: {
         type: DataTypes.STRING,
@@ -24,4 +25,23 @@ const Note = sequelize.define("note", {
     }
 }, { timestamps: true, freezeTableName: true })
 
-module.exports = Note
+Note.all = async () => {
+    const query = "SELECT note.*, user.nome FROM note JOIN user ON user.id = note.userId "
+    return await sequelize.query(query)
+}
+Note.find = async (id) => {
+    const query = "SELECT note.*, user.nome FROM note JOIN user ON user.id = note.userId WHEREs note.id = $id"
+    return await sequelize.query(query, {
+        type: sequelize.QueryTypes.SELECT,
+        bind: { id }
+    })
+}
+Note.delete = async (id) => {
+    const query = "DELETE note WHERE note.id = $id"
+    return await sequelize.query(query, {
+        type: sequelize.QueryTypes.SELECT,
+        bind: { id }
+    })
+}
+
+module.exports = { Note, sequelize }
