@@ -38,8 +38,8 @@ class NoteController {
     async delete ({ request, response }) {
         const id = request.params.id
         try {
-            const res = await Note.destroy({ where: id })
-            await response.status(200).send(res)
+            const res = await Note.delete(id)
+            await response.status(200).send()
         } catch (err) {
             await response.status(err.status).send(err)
         }

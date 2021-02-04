@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize")
 const sequelize = require("../config/database")
+const { User } = require("../models/User")
 
 const Note = sequelize.define("note", {
     id: {
@@ -25,23 +26,30 @@ const Note = sequelize.define("note", {
     }
 }, { timestamps: true, freezeTableName: true })
 
+Note.belongsTo(User)
+
 Note.all = async () => {
-    const query = "SELECT note.*, user.nome FROM note JOIN user ON user.id = note.userId "
-    return await sequelize.query(query)
+    return await Note.findAll()
 }
 Note.find = async (id) => {
-    const query = "SELECT note.*, user.nome FROM note JOIN user ON user.id = note.userId WHEREs note.id = $id"
-    return await sequelize.query(query, {
-        type: sequelize.QueryTypes.SELECT,
-        bind: { id }
+    return await Note.findAll({
+        where: { id },
+        include: [
+            {
+                model: User,
+                as: "user",
+                attributes: ["name"]
+            },
+        ],
     })
 }
 Note.delete = async (id) => {
-    const query = "DELETE note WHERE note.id = $id"
-    return await sequelize.query(query, {
-        type: sequelize.QueryTypes.SELECT,
-        bind: { id }
+    await Note.destroy({
+        where: { id }
     })
+    return true
 }
+
+
 
 module.exports = { Note, sequelize }
