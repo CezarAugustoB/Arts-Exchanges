@@ -5,23 +5,9 @@ const mail = require("../config/mail")
 const path = require("path")
 class MailService {
 
-    constructor({ from, to, bcc, subject, template, context }, { host, port, authUser, authPass } = {}) {
-        this.message = {}
-        this.config = {}
-
-        this.message.from = from
-        this.message.to = to
-        this.message.bcc = bcc
-        this.message.subject = subject
-        this.message.template = template
-        this.message.context = context
-
-        this.config.host = host
-        this.config.port = port
-        this.config.user = authUser
-        this.config.pass = authPass
-
-        console.log(this)
+    constructor({ from, to, bcc, subject, template, context }, { host, port, user, pass } = {}) {
+        this.message = { from, to, bcc, subject, template, context }
+        this.config = { host, port, user, pass }
     }
     async send () {
         try {
@@ -30,7 +16,7 @@ class MailService {
             this.transposer.use('compile', hbs({
                 viewEngine: {
                     defaultLayout: undefined,
-                    partialsDir: path.resolve('./app/views/emails/')
+                    partialsDir: path.resolve('./views/emails/')
                 },
                 viewPath,
                 extName: '.hbs'
