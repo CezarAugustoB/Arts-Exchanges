@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const User = require('../controllers/User/UserController')
+const User = require('../app/controllers/User/UserController')
 
 const controllerIstance = new User()
 

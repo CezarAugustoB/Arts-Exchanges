@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Note = require('../controllers/Note')
+const Note = require('../app/controllers/Note')
 
 const controllerIstance = new Note()
 

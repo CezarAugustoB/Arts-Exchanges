@@ -1,13 +1,13 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-const indexMiddleware = require("./middlewares/indexMiddleware.js")
-const indexRouter = require('./app/routes/index')
-const noteRouter = require("./app/routes/note")
-const userRouter = require("./app/routes/user")
+const indexMiddleware = require("./app/middlewares/indexMiddleware.js")
+const indexRouter = require('./routes/index')
+const noteRouter = require("./routes/note")
+const userRouter = require("./routes/user")
 
 require('dotenv').config()
-require('./app/config/connection')
+require('./config/connection')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))

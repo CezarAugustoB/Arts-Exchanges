@@ -1,6 +1,6 @@
 const sequelize = require("./database")
-const { Note } = require('../models/Note')
-const { User } = require('../models/User/User')
+const { Note } = require('../app/models/Note')
+const { User } = require('../app/models/User/User')
 
 return sequelize.authenticate()
     .then(result => {
