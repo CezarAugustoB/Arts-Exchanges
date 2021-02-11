@@ -12,8 +12,8 @@ class MailService {
     async send () {
         try {
             const viewPath = path.resolve(__dirname, '..', 'views', 'emails')
-            this.transposer = mail(this.config)
-            this.transposer.use('compile', hbs({
+            this.transporter = mail(this.config)
+            this.transporter.use('compile', hbs({
                 viewEngine: {
                     defaultLayout: undefined,
                     partialsDir: path.resolve('./views/emails/')
@@ -21,17 +21,16 @@ class MailService {
                 viewPath,
                 extName: '.hbs'
             }))
-            await this.transposer.sendMail(this.message, (error, info) => {
+            await this.transporter.sendMail(this.message, (error, info) => {
                 if (error) {
                     console.error('\x1b[31m > Unable to send email: ', error, '\x1b[0m')
                 } else {
-                    console.error('\x1b[32m > Email sent: ', info, '\x1b[0m')
+                    console.error('\x1b[32m > Email sent: ', info.messageId, '\x1b[0m')
                 }
             })
         } catch (error) {
             console.error('\x1b[31m > Unable to send email: ', error, '\x1b[0m')
         }
     }
-
 }
 module.exports = MailService

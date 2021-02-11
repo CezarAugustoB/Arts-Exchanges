@@ -1,8 +1,7 @@
 "use strict"
-const MailService = require("../services/MailService")
-
 
 const { Note, sequelize } = require("../models/Note")
+
 class NoteController {
     async index ({ request, response }) {
         try {
@@ -12,24 +11,6 @@ class NoteController {
             await response.status(err.status).send(err)
         }
     }
-    async sendEmail ({ request }) {
-        const message = {
-            from: '',
-            to: '',
-            subject: "Test Send Email",
-            template: 'teste',
-            context: {
-                title: "TEST"
-            }
-        }
-        const config = {
-            authUser: "",
-            authPass: ""
-        }
-        let mailService = new MailService(message, config)
-        mailService.send()
-    }
-
     async show ({ request, response }) {
         const id = request.params.id
         const notes = await Note.find(id)
