@@ -16,5 +16,5 @@ app.use("/note", noteRouter)
 
 app.set('PORT', process.env.PORT)
 app.listen(app.get('PORT'), function () {
-    console.log(`Server listen on port ${app.get('PORT')}`)
+    console.log(`\x1b[33m > Server listen on port ${app.get('PORT')}\x1b[0m`)
 })

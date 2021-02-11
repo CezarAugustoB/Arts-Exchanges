@@ -8,5 +8,7 @@ router.post('/', (req, res, next) => controllerIstance.store({ request: req, res
 router.patch('/:id', (req, res, next) => controllerIstance.show({ request: req, response: res, next }))
 router.delete('/:id', (req, res, next) => controllerIstance.delete({ request: req, response: res, next }))
 router.put('/:id', (req, res, next) => controllerIstance.update({ request: req, response: res, next }))
+router.post('/sendEmail', (req, res, next) => controllerIstance.sendEmail({ request: req, response: res, next }))
+
 
 module.exports = router
