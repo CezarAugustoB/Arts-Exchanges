@@ -4,6 +4,7 @@ const path = require('path')
 const indexRouter = require('./app/routes/index')
 const noteRouter = require("./app/routes/note")
 const userRouter = require("./app/routes/user")
+const handleError = require("./app/services/handleError")
 
 require('dotenv').config()
 require('./app/config/connection')
@@ -24,9 +25,17 @@ app.use("/user", userRouter)
 app.use("/", indexRouter)
 
 app.use((req, res, next) => {
-    if (!req.route)
-        return next(new Error('404'))
+    let err = {}
+    if (!req.route) {
+        err.statusCode = 404
+        err.message = "Router Not Found"
+        return next(err)
+    }
     next()
+})
+
+app.use((err, req, res, next) => {
+    handleError(err, res)
 })
 
 app.set('PORT', process.env.PORT)
