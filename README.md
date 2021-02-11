@@ -16,4 +16,3 @@ Art's Exchanges is a system that brings people together through the exchange of 
 - [dotenv]: https://github.com/motdotla/dotenv
 - [sequelize]: https://sequelize.org/
 ```
-- 
