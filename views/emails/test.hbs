@@ -1,0 +1,9 @@
+<div class="entry">
+    <h1>{{title}}</h1>
+    <div class="body">
+        {{#noop}}test{{/noop}}
+    </div>
+    {{#each cids}}
+    <img src="cid:{{this}}" alt="{{this}}" />
+    {{/each}}
+</div>

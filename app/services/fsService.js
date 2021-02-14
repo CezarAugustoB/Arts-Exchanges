@@ -2,40 +2,24 @@
 const fs = require("fs")
 const { promisify } = require('util')
 
-const readFileAsync = promisify(fs.readFile)
-const writeFileAsync = promisify(fs.writeFile)
-const appendFileAsync = promisify(fs.appendFile)
-const truncateAsync = promisify(fs.truncate)
+const unlinkAsync = promisify(fs.unlink)
+const existsAsync = promisify(fs.exists)
 
-async function load (filePath) {
+async function remove (filePath) {
     try {
-        const fileBuffer = await readFileAsync(filePath, 'utf-8')
-        return JSON.parse(fileBuffer)
+        return await unlinkAsync(filePath)
     } catch (error) {
-        console.log("\x1b[31m > Unable to load data from file: ", error, '\x1b[0m')
+        console.log("\x1b[31m > Unable to remove file: ", error, '\x1b[0m')
+        throw new Error(error)
     }
 }
-async function save (filePath, content) {
-    const contentString = JSON.stringify(content)
+async function exists (filePath) {
     try {
-        return await writeFileAsync(filePath, contentString)
+        return existsAsync(filePath)
     } catch (error) {
-        console.log("\x1b[31m > Unable to save data within the file: ", error, '\x1b[0m')
-    }
-}
-async function append (filePath, content) {
-    try {
-        return await appendFileAsync(filePath, content)
-    } catch (error) {
-        console.log("\x1b[31m > Unable to append file: ", error, '\x1b[0m')
-    }
-}
-async function truncate (filePath) {
-    try {
-        truncateAsync(filePath, 0)
-    } catch (error) {
-        console.log("\x1b[31m > Unable to truncate file: ", error, '\x1b[0m')
+        console.log("\x1b[31m > Unable to verify file: ", error, '\x1b[0m')
+        throw new Error(error)
     }
 }
 
-module.exports = { save, append, load, truncate }
+module.exports = { remove, exists }

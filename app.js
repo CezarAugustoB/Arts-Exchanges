@@ -3,8 +3,6 @@ const app = express()
 const path = require('path')
 const indexMiddleware = require("./app/middlewares/indexMiddleware.js")
 const indexRouter = require('./routes/index')
-const noteRouter = require("./routes/note")
-const userRouter = require("./routes/user")
 
 require('dotenv').config()
 require('./config/connection')
@@ -16,8 +14,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(indexMiddleware.logRequest)
 
 app.use("/", indexRouter)
-app.use("/note", noteRouter)
-app.use("/user", userRouter)
 
 app.use(indexMiddleware.checkRoute)
 app.use(indexMiddleware.handleError)

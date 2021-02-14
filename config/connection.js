@@ -1,12 +1,10 @@
 const sequelize = require("./database")
-const { Note } = require('../app/models/Note')
-const { User } = require('../app/models/User/User')
+const { Log } = require('../app/models/Log')
 
 return sequelize.authenticate()
     .then(result => {
         console.log(`\x1b[32m > Models Sync\x1b[0m`)
-        User.sync()
-        Note.sync()
+        Log.sync()
     })
     .then(result => {
         console.log(`\x1b[32m > Synchronized Models\x1b[0m`)
