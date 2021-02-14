@@ -7,8 +7,8 @@ const fsService = require("../services/fsService")
 class MailController {
     async upload ({ request, response }) {
         try {
-            const uploadFileService = new UploadFileService({ request, response, next })
-            const files = await uploadFileService.uploadFile()
+            const uploadFileService = new UploadFileService({ request, response })
+            const files = await uploadFileService.saveImages()
 
             let attachments = []
             for (const [index, file] of files.paths.entries()) {
@@ -17,8 +17,8 @@ class MailController {
 
             const cids = attachments.map(item => item.cid)
             const message = {
-                from: '',
-                to: '',
+                from: 'Cezar Augusto <cezaraugusto@codinarts.com>',
+                to: 'grippingswing@gmail.com',
                 subject: "Test Email",
                 template: 'test',
                 context: {
