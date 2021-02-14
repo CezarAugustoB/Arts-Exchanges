@@ -1,7 +1,7 @@
 {
-  "name": "todo_mevn-server",
+  "name": "artsexchangesserver",
   "version": "1.0.0",
-  "description": "TODO APP",
+  "description": "server",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,19 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CezarAugustoB/TODO_MEVN-SERVER.git"
+    "url": "git+https://github.com/CezarAugustoB/Arts-Exchanges-Server.git"
   },
   "author": "Cezar Augusto",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CezarAugustoB/TODO_MEVN-SERVER/issues"
+    "url": "https://github.com/CezarAugustoB/Arts-Exchanges-Server/issues"
   },
   "nodemonConfig": {
     "ignore": [
       "app/helpers/*"
     ]
   },
-  "homepage": "https://github.com/CezarAugustoB/TODO_MEVN-SERVER#readme",
+  "homepage": "https://github.com/CezarAugustoB/Arts-Exchanges-Server#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
