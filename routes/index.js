@@ -8,6 +8,6 @@ router.get('/', function (req, res, next) {
     res.send({ greeting: "Art's Exchanges Server" })
 })
 
-router.post('/upload-images', (req, res, next) => controllerIstance.upload({ request: req, response: res }).catch(next))
+router.post('/send-email', (req, res, next) => controllerIstance.receive({ request: req, response: res }).catch(next))
 
 module.exports = router

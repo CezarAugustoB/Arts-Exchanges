@@ -6,7 +6,7 @@ const path = require("path")
 const fsService = require('./fsService')
 class MailService {
 
-    constructor({ from, to, bcc, subject, template, context, attachments }, { host, port, user, pass } = {}) {
+    constructor({ from, to, bcc, subject, template, context, attachments }, { host, port, user, pass } = null) {
         this.message = { from, to, bcc, subject, template, context, attachments }
         this.config = { host, port, user, pass }
     }

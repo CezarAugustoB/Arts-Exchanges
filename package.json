@@ -16,6 +16,11 @@
   "bugs": {
     "url": "https://github.com/CezarAugustoB/TODO_MEVN-SERVER/issues"
   },
+  "nodemonConfig": {
+    "ignore": [
+      "app/helpers/*"
+    ]
+  },
   "homepage": "https://github.com/CezarAugustoB/TODO_MEVN-SERVER#readme",
   "dependencies": {
     "dotenv": "^8.2.0",

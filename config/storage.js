@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
         callback(null, filename)
     }
 })
-const uploadFiles = multer({ storage }).array("files", 10)
+const uploadFiles = multer({ storage }).array("", 10)
 const uploadSync = util.promisify(uploadFiles)
 
 module.exports = {
