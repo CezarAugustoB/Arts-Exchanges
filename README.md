@@ -15,4 +15,8 @@ Art's Exchanges is a system that brings people together through the exchange of 
 - [mysql2]: https://github.com/sidorares/node-mysql2
 - [nodemon]: https://github.com/remy/nodemon
 - [dotenv]: https://github.com/motdotla/dotenv
+- [multer]: https://github.com/expressjs/multer
+- [nodemailer]: https://nodemailer.com
+- [nodemailer-express-handlebars]: https://github.com/yads/nodemailer-express-handlebars
 ```
+    
